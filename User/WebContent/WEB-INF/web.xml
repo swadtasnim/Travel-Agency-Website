@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>DBListener</display-name>
+  <listener>
+    <listener-class>
+MyDbListenerClass
+</listener-class>
+  </listener>
+  <context-param>
+    <param-name>driverclass</param-name>
+    <param-value>com.mysql.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dsn</param-name>
+    <param-value>jdbc:mysql://localhost:3306/lict</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbuser</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbpass</param-name>
+    <param-value>12345</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>LoginServlet1</servlet-name>
+    <servlet-class>LoginServlet1</servlet-class>
+    <init-param>
+      <param-name>qry</param-name>
+      <param-value>Select * from reg_users where userid=? and password=?</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>pack</servlet-name>
+    <servlet-class>pack</servlet-class>
+    <init-param>
+      <param-name>qry</param-name>
+      <param-value>Select * from pack where types=? and hotels=?</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>RegistrationServlet1</servlet-name>
+    <servlet-class>RegistrationServlet1</servlet-class>
+    <init-param>
+      <param-name>qry</param-name>
+      <param-value>Insert into reg_users values(?,?,?,?)</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet1</servlet-name>
+    <url-pattern>/LoginServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegistrationServlet1</servlet-name>
+    <url-pattern>/RegistrationServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>pack</servlet-name>
+    <url-pattern>/pack</url-pattern>
+  </servlet-mapping>
+</web-app>
